@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bestter — Trading & Services</title>
+  <meta name="description" content="Buyers Trade Limited — Import, customs management, courier sourcing, commercial management, buying & selling, marketing. Bilingual EN/ES." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/x-icon" href="buyerstrade-logo.png">
+  <style>
+    :root{
+      --bg:#1f1f1f;          /* charcoal */
+      --panel:#242424;       /* slightly lighter */
+      --text:#f2f2f2;        /* off white */
+      --muted:#b9b9b9;       /* muted gray */
+      --brand:#2BB673;       /* green from logo */
+      --accent:#F39C12;      /* orange/gold from wheels */
+      --ring: rgba(43,182,115,.35);
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;background:radial-gradient(1200px 800px at 10% -10%, rgba(243,156,18,.12), rgba(243,156,18,0) 40%),
+                                radial-gradient(900px 600px at 110% 10%, rgba(43,182,115,.16), rgba(43,182,115,0) 40%),
+                                var(--bg);
+              color:var(--text);font-family:Inter,system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif;}
+    a{color:inherit;text-decoration:none}
+    img{max-width:100%;display:block}
+
+    /* Header */
+    header{position:sticky;top:0;z-index:50;background:rgba(31,31,31,.75);backdrop-filter:blur(8px);border-bottom:1px solid #2a2a2a}
+    .nav{max-width:1200px;margin:0 auto;display:flex;align-items:center;gap:16px;padding:14px 20px}
+    .brand{display:flex;align-items:center;gap:12px;font-weight:800;letter-spacing:.5px}
+    .brand img{width:40px;height:40px}
+    .brand small{display:block;font-weight:600;font-size:11px;color:var(--muted);letter-spacing:.25em}
+    .spacer{flex:1}
+    .lang-switch{display:flex;align-items:center;gap:6px;background:#2a2a2a;border:1px solid #333;border-radius:999px;padding:4px}
+    .lang-switch button{border:0;background:transparent;color:var(--muted);padding:6px 10px;border-radius:999px;font-weight:700;cursor:pointer}
+    .lang-switch button.active{background:var(--brand);color:#0f2318}
+
+    .cta{padding:10px 16px;border-radius:14px;border:1px solid #3a3a3a;background:linear-gradient(180deg,#2a2a2a,#232323);color:#fff;font-weight:700;box-shadow:0 0 0 0 var(--ring);transition:.25s ease;}
+    .cta:hover{transform:translateY(-1px);box-shadow:0 0 0 6px var(--ring)}
+
+    /* Layout helpers */
+    .container{max-width:1200px;margin:0 auto;padding:60px 20px}
+    .grid{display:grid;gap:24px}
+
+    /* Hero */
+    .hero{padding:60px 20px 40px}
+    .hero-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1.1fr .9fr;gap:28px;align-items:center}
+    .hero h1{font-size:clamp(28px,5vw,52px);line-height:1.06;margin:0 0 12px}
+    .hero p{color:var(--muted);font-size:clamp(14px,1.6vw,18px)}
+    .badges{display:flex;flex-wrap:wrap;gap:10px;margin:20px 0}
+    .badge{display:inline-flex;align-items:center;gap:8px;border:1px dashed #3a3a3a;padding:8px 10px;border-radius:999px;font-size:12px;color:#ddd}
+    .badge svg{width:16px;height:16px}
+    .hero-card{background:linear-gradient(180deg,#242424,#1f1f1f);border:1px solid #2a2a2a;border-radius:18px;padding:18px;box-shadow:0 10px 30px rgba(0,0,0,.35)}
+    .hero-illus{aspect-ratio:4/3;border-radius:16px;border:1px solid #2a2a2a;display:grid;place-items:center;background:radial-gradient(600px 300px at 40% 0%, rgba(43,182,115,.1), transparent),
+      linear-gradient(180deg,#252525,#1f1f1f)}
+    .hero-illus .cart{width:min(420px,90%)}
+
+    /* Sections */
+    h2.section-title{font-size:clamp(22px,4vw,36px);margin:0 0 18px}
+    .section-sub{color:var(--muted);margin:-6px 0 24px}
+
+    /* Services */
+    .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .card{position:relative;background:linear-gradient(180deg,#242424,#1e1e1e);border:1px solid #2d2d2d;border-radius:16px;padding:18px;overflow:hidden;transition:transform .25s ease, box-shadow .25s ease}
+    .card:hover{transform:translateY(-4px);box-shadow:0 12px 30px rgba(0,0,0,.35)}
+    .card h3{margin:0 0 8px;font-size:18px}
+    .card p{margin:0 0 12px;color:var(--muted)}
+    .chip{display:inline-flex;align-items:center;gap:6px;padding:6px 10px;border-radius:999px;border:1px solid #353535;background:#2a2a2a;font-size:12px;color:#e5e5e5}
+
+    /* Timeline */
+    .timeline{position:relative;padding-left:22px}
+    .timeline::before{content:"";position:absolute;left:8px;top:0;bottom:0;width:2px;background:linear-gradient(var(--brand),var(--accent))}
+    .step{position:relative;margin:18px 0;background:#232323;border:1px solid #303030;border-radius:14px;padding:14px}
+    .step::before{content:"";position:absolute;left:-8px;top:18px;width:14px;height:14px;border-radius:50%;background:var(--brand);box-shadow:0 0 0 4px rgba(43,182,115,.25)}
+
+    /* CTA band */
+    .band{background:linear-gradient(90deg, rgba(43,182,115,.15), rgba(243,156,18,.15));border-top:1px solid #2a2a2a;border-bottom:1px solid #2a2a2a}
+    .band .row{display:flex;flex-wrap:wrap;gap:14px;align-items:center;justify-content:space-between}
+
+    /* Contact */
+    form{display:grid;gap:12px}
+    .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    input,textarea{width:100%;border-radius:12px;border:1px solid #383838;background:#2a2a2a;color:#fff;padding:12px 14px;outline:none}
+    textarea{min-height:140px;resize:vertical}
+    input:focus,textarea:focus{border-color:var(--brand);box-shadow:0 0 0 4px var(--ring)}
+    .submit{background:linear-gradient(180deg,var(--brand),#1aa864);border:0;color:#0f2318;font-weight:800;padding:12px 18px;border-radius:12px;cursor:pointer}
+    .submit:hover{filter:brightness(1.05)}
+    .contact-card{background:linear-gradient(180deg,#242424,#1f1f1f);border:1px solid #2a2a2a;border-radius:18px;padding:18px}
+
+    /* Footer */
+    footer{border-top:1px solid #2a2a2a;color:#cfcfcf}
+    .foot{max-width:1200px;margin:0 auto;padding:28px 20px;display:flex;flex-wrap:wrap;gap:16px;align-items:center;justify-content:space-between}
+    .small{color:var(--muted);font-size:13px}
+
+    /* Responsive */
+    @media (max-width: 980px){
+      .hero-inner{grid-template-columns:1fr}
+      .cards{grid-template-columns:1fr 1fr}
+    }
+    @media (max-width: 640px){
+      .cards{grid-template-columns:1fr}
+      .grid-2{grid-template-columns:1fr}
+      .lang-switch{transform:scale(.95)}
+    }
+
+    /* Animations */
+    .reveal{opacity:0;transform:translateY(10px);transition:opacity .6s ease, transform .6s ease}
+    .reveal.in{opacity:1;transform:none}
+    @keyframes float{0%{transform:translateY(0)}50%{transform:translateY(-6px)}100%{transform:translateY(0)}}
+    .float{animation:float 6s ease-in-out infinite}
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="nav">
+      <a class="brand" href="#home">
+        <img src="buyerstrade-logo.png" alt="Buyers Trade Limited logo" />
+        <div>
+          <div>Buyers Trade Limited</div>
+          <small data-i18n="tagline">TRADING AND SERVICES</small>
+        </div>
+      </a>
+      <div class="spacer"></div>
+      <div class="lang-switch" aria-label="Language switcher">
+        <button id="btn-en" class="active" data-lang="en" aria-pressed="true">EN</button>
+        <button id="btn-es" data-lang="es" aria-pressed="false">ES</button>
+      </div>
+      <a href="#contact" class="cta" data-i18n="contact_cta">Contact us</a>
+    </nav>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero" id="home">
+      <div class="hero-inner">
+        <div class="hero-card reveal">
+          <h1 data-i18n="h1">Global trading & tailored services — done right.</h1>
+          <p data-i18n="h1_sub">We connect importers, suppliers and opportunities. From customs management and courier sourcing to marketing and commercial ops, we handle the moving parts so you can focus on growth.</p>
+          <div class="badges">
+            <span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h18"/><path d="M3 12l4-4"/><path d="M3 12l4 4"/></svg><span data-i18n="badge_fast">Fast onboarding</span></span>
+            <span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg><span data-i18n="badge_time">On-time execution</span></span>
+            <span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg><span data-i18n="badge_team">Senior team</span></span>
+          </div>
+          <a href="#services" class="cta" data-i18n="explore">Explore services</a>
+        </div>
+        <div class="hero-illus reveal float" aria-hidden="true">
+          <!-- Inline cart illustration styled to match logo palette -->
+          <svg class="cart" viewBox="0 0 560 420" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="40" y="90" width="420" height="170" rx="26" stroke="var(--brand)" stroke-width="20"/>
+            <path d="M60 90 L30 30" stroke="var(--brand)" stroke-width="20" stroke-linecap="round"/>
+            <circle cx="160" cy="320" r="30" stroke="var(--accent)" stroke-width="20"/>
+            <circle cx="300" cy="320" r="30" stroke="var(--accent)" stroke-width="20"/>
+            <path d="M260 160 h100" stroke="var(--brand)" stroke-width="20" stroke-linecap="round"/>
+            <path d="M260 200 h-100" stroke="var(--brand)" stroke-width="20" stroke-linecap="round"/>
+            <path d="M360 140 l30 30 -30 30" stroke="var(--brand)" stroke-width="20" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M160 140 l-30 30 30 30" stroke="var(--brand)" stroke-width="20" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section class="container" id="services">
+      <h2 class="section-title reveal" data-i18n="services_title">What we do</h2>
+      <p class="section-sub reveal" data-i18n="services_sub">Modular services you can mix & match for the exact outcome you need.</p>
+      <div class="cards">
+        <article class="card reveal">
+          <h3 data-i18n="svc_import">Imports & Customs Management</h3>
+          <p data-i18n="svc_import_desc">End-to-end support: sourcing, purchasing, documentation, HS codes, duties, and last‑mile delivery.</p>
+          <div class="chip">HS • INCOTERMS • L/C</div>
+        </article>
+        <article class="card reveal">
+          <h3 data-i18n="svc_courier">Courier & Logistics Sourcing</h3>
+          <p data-i18n="svc_courier_desc">We compare couriers, routes and tariffs to balance speed, reliability and cost.</p>
+          <div class="chip">Air • Sea • Multimodal</div>
+        </article>
+        <article class="card reveal">
+          <h3 data-i18n="svc_clients">Client & Importer Matching</h3>
+          <p data-i18n="svc_clients_desc">We connect your offer with verified buyers/importers across the Americas and beyond.</p>
+          <div class="chip">B2B • Prospecting</div>
+        </article>
+        <article class="card reveal">
+          <h3 data-i18n="svc_buy">Buying & Selling</h3>
+          <p data-i18n="svc_buy_desc">We operate purchase and resale cycles with transparent pricing and documented control.</p>
+          <div class="chip">Sourcing • Resale</div>
+        </article>
+        <article class="card reveal">
+          <h3 data-i18n="svc_commercial">Commercial Management</h3>
+          <p data-i18n="svc_commercial_desc">Pipeline, negotiations and after‑sales managed to your KPIs.</p>
+          <div class="chip">CRM • SLAs</div>
+        </article>
+        <article class="card reveal">
+          <h3 data-i18n="svc_marketing">Marketing & Market Access</h3>
+          <p data-i18n="svc_marketing_desc">Go‑to‑market plans, messaging, and lead gen that convert in your target region.</p>
+          <div class="chip">GTM • Lead Gen</div>
+        </article>
+      </div>
+    </section>
+
+    <!-- HOW WE WORK / TIMELINE -->
+    <section class="container">
+      <h2 class="section-title reveal" data-i18n="how_title">How we work</h2>
+      <p class="section-sub reveal" data-i18n="how_sub">Simple, transparent steps from hello to delivery.</p>
+      <div class="timeline">
+        <div class="step reveal">
+          <strong data-i18n="how_1">1) Discovery</strong>
+          <div class="small" data-i18n="how_1_desc">We clarify goals, constraints, and success metrics.</div>
+        </div>
+        <div class="step reveal">
+          <strong data-i18n="how_2">2) Proposal</strong>
+          <div class="small" data-i18n="how_2_desc">You get a modular quote and a realistic timeline.</div>
+        </div>
+        <div class="step reveal">
+          <strong data-i18n="how_3">3) Execution</strong>
+          <div class="small" data-i18n="how_3_desc">We coordinate suppliers, logistics and paperwork end‑to‑end.</div>
+        </div>
+        <div class="step reveal">
+          <strong data-i18n="how_4">4) Handover</strong>
+          <div class="small" data-i18n="how_4_desc">Delivery, documentation, and post‑delivery support.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BAND CTA -->
+    <section class="band">
+      <div class="container row">
+        <h3 class="reveal" data-i18n="band_title">Ready to move your next shipment or open a new market?</h3>
+        <a class="cta reveal" href="#contact" data-i18n="band_cta">Talk to Buyers Trade Limited</a>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="container" id="contact">
+      <div class="grid" style="grid-template-columns:1.1fr .9fr;align-items:start">
+        <div class="reveal contact-card">
+          <h2 class="section-title" data-i18n="contact_title">Contact</h2>
+          <p class="section-sub" data-i18n="contact_sub">Drop us a line. We’ll reply within one business day.</p>
+          <form action="https://formsubmit.co/buyerstrade.contact@gmail.com" method="POST">
+            <!-- FormSubmit settings -->
+            <input type="hidden" name="_subject" value="New message from Buyers Trade Limited website" />
+            <input type="hidden" name="_captcha" value="true" />
+            <input type="hidden" name="_template" value="table" />
+            <div class="grid-2">
+              <div>
+                <label class="small" for="name" data-i18n="label_name">Name</label>
+                <input id="name" type="text" name="name" required placeholder="Jane Doe" />
+              </div>
+              <div>
+                <label class="small" for="email" data-i18n="label_email">Email</label>
+                <input id="email" type="email" name="email" required placeholder="jane@company.com" />
+              </div>
+            </div>
+            <div>
+              <label class="small" for="company" data-i18n="label_company">Company</label>
+              <input id="company" type="text" name="company" placeholder="Company LLC" />
+            </div>
+            <div>
+              <label class="small" for="message" data-i18n="label_message">Message</label>
+              <textarea id="message" name="message" required placeholder="Tell us about your shipment, product, or goal…"></textarea>
+            </div>
+            <button class="submit" type="submit" data-i18n="send">Send message</button>
+          </form>
+        </div>
+        <aside class="reveal" aria-label="Company details">
+          <div class="contact-card">
+            <h3 style="margin:0 0 6px">Buyers Trade Limited</h3>
+            <div class="small" style="margin-bottom:10px" data-i18n="tagline">TRADING AND SERVICES</div>
+            <div class="small"><strong data-i18n="addr">Address</strong>: 2721 Ocean Blvd, apt 303 — Hollywood, Florida — ZIP: 33019</div>
+            <div class="small"><strong>Email</strong>: <a href="mailto:buyerstrade.contact@gmail.com">buyerstrade.contact@gmail.com</a></div>
+            <div class="small" style="margin-top:12px" data-i18n="note_docs">Fully documented operations. NDA available on request.</div>
+          </div>
+        </aside>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="foot">
+      <div class="brand" style="gap:10px">
+        <img src="buyerstrade-logo.png" alt="Buyers Trade Limited logo small" style="width:28px;height:28px"/>
+        <div>Buyers Trade Limited</div>
+      </div>
+      <div class="small">© <span id="year"></span> Buyers Trade Limited — <span data-i18n="rights">All rights reserved.</span></div>
+    </div>
+  </footer>
+
+  <script>
+    // Year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Scroll reveal animations
+    const revealEls = document.querySelectorAll('.reveal');
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+    },{threshold:.15});
+    revealEls.forEach(el=>io.observe(el));
+
+    // i18n dictionary
+    const dict = {
+      en: {
+        tagline: 'TRADING AND SERVICES',
+        contact_cta:'Contact us',
+        h1:'Global trading & tailored services — done right.',
+        h1_sub:'We connect importers, suppliers and opportunities. From customs management and courier sourcing to marketing and commercial ops, we handle the moving parts so you can focus on growth.',
+        badge_fast:'Fast onboarding',
+        badge_time:'On-time execution',
+        badge_team:'Senior team',
+        explore:'Explore services',
+        services_title:'What we do',
+        services_sub:'Modular services you can mix & match for the exact outcome you need.',
+        svc_import:'Imports & Customs Management',
+        svc_import_desc:'End-to-end support: sourcing, purchasing, documentation, HS codes, duties, and last‑mile delivery.',
+        svc_courier:'Courier & Logistics Sourcing',
+        svc_courier_desc:'We compare couriers, routes and tariffs to balance speed, reliability and cost.',
+        svc_clients:'Client & Importer Matching',
+        svc_clients_desc:'We connect your offer with verified buyers/importers across the Americas and beyond.',
+        svc_buy:'Buying & Selling',
+        svc_buy_desc:'We operate purchase and resale cycles with transparent pricing and documented control.',
+        svc_commercial:'Commercial Management',
+        svc_commercial_desc:'Pipeline, negotiations and after‑sales managed to your KPIs.',
+        svc_marketing:'Marketing & Market Access',
+        svc_marketing_desc:'Go‑to‑market plans, messaging, and lead gen that convert in your target region.',
+        how_title:'How we work',
+        how_sub:'Simple, transparent steps from hello to delivery.',
+        how_1:'1) Discovery',
+        how_1_desc:'We clarify goals, constraints, and success metrics.',
+        how_2:'2) Proposal',
+        how_2_desc:'You get a modular quote and a realistic timeline.',
+        how_3:'3) Execution',
+        how_3_desc:'We coordinate suppliers, logistics and paperwork end‑to‑end.',
+        how_4:'4) Handover',
+        how_4_desc:'Delivery, documentation, and post‑delivery support.',
+        band_title:'Ready to move your next shipment or open a new market?',
+        band_cta:'Talk to Buyers Trade Limited',
+        contact_title:'Contact',
+        contact_sub:"Drop us a line. We’ll reply within one business day.",
+        label_name:'Name',
+        label_email:'Email',
+        label_company:'Company',
+        label_message:'Message',
+        send:'Send message',
+        addr:'Address',
+        note_docs:'Fully documented operations. NDA available on request.',
+        rights:'All rights reserved.'
+      },
+      es: {
+        tagline: 'TRADING Y SERVICIOS',
+        contact_cta:'Contacto',
+        h1:'Comercio internacional y servicios a medida — bien hechos.',
+        h1_sub:'Conectamos importadores, proveedores y oportunidades. Desde la gestión aduanera y la búsqueda de courier hasta marketing y operaciones comerciales, nos ocupamos de todo para que te enfoques en crecer.',
+        badge_fast:'Alta en tiempo récord',
+        badge_time:'Ejecución puntual',
+        badge_team:'Equipo senior',
+        explore:'Ver servicios',
+        services_title:'Qué hacemos',
+        services_sub:'Servicios modulares que podés combinar para lograr exactamente lo que necesitás.',
+        svc_import:'Importaciones y Gestión Aduanera',
+        svc_import_desc:'Soporte extremo a extremo: sourcing, compra, documentación, partidas arancelarias, aranceles y entrega final.',
+        svc_courier:'Búsqueda de Couriers & Logística',
+        svc_courier_desc:'Comparamos couriers, rutas y tarifas para equilibrar velocidad, confiabilidad y costo.',
+        svc_clients:'Búsqueda de Clientes e Importadores',
+        svc_clients_desc:'Conectamos tu oferta con compradores/importadores verificados en las Américas y más allá.',
+        svc_buy:'Compra‑Venta',
+        svc_buy_desc:'Operamos ciclos de compra y reventa con precios transparentes y control documentado.',
+        svc_commercial:'Gestión Comercial',
+        svc_commercial_desc:'Pipeline, negociaciones y posventa gestionados según tus KPIs.',
+        svc_marketing:'Marketing & Acceso a Mercado',
+        svc_marketing_desc:'Planes de go‑to‑market, mensajes y generación de demanda que convierten en tu región objetivo.',
+        how_title:'Cómo trabajamos',
+        how_sub:'Pasos simples y transparentes desde el hola hasta la entrega.',
+        how_1:'1) Descubrimiento',
+        how_1_desc:'Aclaramos objetivos, restricciones y métricas de éxito.',
+        how_2:'2) Propuesta',
+        how_2_desc:'Recibís una cotización modular y un cronograma realista.',
+        how_3:'3) Ejecución',
+        how_3_desc:'Coordinamos proveedores, logística y documentación de punta a punta.',
+        how_4:'4) Cierre',
+        how_4_desc:'Entrega, documentación y soporte posterior.',
+        band_title:'¿Listo para mover tu próximo envío o abrir un nuevo mercado?',
+        band_cta:'Hablá con Buyers Trade Limited',
+        contact_title:'Contacto',
+        contact_sub:'Escribinos. Respondemos dentro de un día hábil.',
+        label_name:'Nombre',
+        label_email:'Correo',
+        label_company:'Empresa',
+        label_message:'Mensaje',
+        send:'Enviar mensaje',
+        addr:'Dirección',
+        note_docs:'Operaciones totalmente documentadas. NDA disponible a pedido.',
+        rights:'Todos los derechos reservados.'
+      }
+    };
+
+    function setLang(lang){
+      const dictLang = dict[lang] || dict.en;
+      document.documentElement.lang = lang;
+      document.querySelectorAll('[data-i18n]').forEach(el=>{
+        const key = el.getAttribute('data-i18n');
+        if(dictLang[key]) el.textContent = dictLang[key];
+      });
+      // Update active state
+      document.querySelectorAll('.lang-switch button').forEach(btn=>{
+        const active = btn.dataset.lang === lang; btn.classList.toggle('active', active); btn.setAttribute('aria-pressed', active);
+      });
+    }
+
+    // Switcher
+    document.getElementById('btn-en').addEventListener('click', ()=>setLang('en'));
+    document.getElementById('btn-es').addEventListener('click', ()=>setLang('es'));
+
+    // Persist language preference
+    const saved = localStorage.getItem('bestter_lang');
+    setLang(saved || 'en');
+    document.querySelectorAll('.lang-switch button').forEach(b=>b.addEventListener('click', ()=>{
+      localStorage.setItem('bestter_lang', b.dataset.lang);
+    }));
+  </script>
+</body>
+</html>
